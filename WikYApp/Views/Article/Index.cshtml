@@ -1,0 +1,28 @@
+﻿@model List<Article>
+@{
+    ViewData["Title"] = "Liste des articles";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Articles</h1>
+    <p>☜(ﾟヮﾟ☜)</p>
+</div>
+<div class="text-success">@TempData["articleCreated"]</div>
+<div class="text-success">@TempData["articleUpdated"]</div>
+<div class="text-success">@TempData["articleDeleted"]</div>
+
+<p class="d-flex justify-content-between">
+    @Model.Count article(s) <br />
+    <a asp-asp-controller="Article" asp-action="New" class="btn btn-info">Ajouter un article</a>
+</p>
+@if (Model is not null)
+{
+    @foreach (Article article in Model)
+    {
+        <partial name="_ArticlePreview" model="@article" />
+    }
+}
+else
+{
+    <p>Il n'y a pas d'articles à afficher 🤷‍</p>
+}

@@ -1,0 +1,19 @@
+﻿@{
+    ViewData["Title"] = "WikY";
+}
+@model Article
+<div class="text-center">
+    <h1 class="display-4">Bienvenue sur WikY</h1>
+    <p>(☞ﾟヮﾟ)☞</p>
+</div>
+@if (Model is not null)
+{
+    <div>
+        <p class="text-uppercase">Dernier article ajouté</p>
+        <partial name="_ArticlePreview" model="Model" />
+    </div>
+
+} else
+{
+    <p>Il n'y a pas encore d'articles 😪</p>
+}

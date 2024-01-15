@@ -1,0 +1,12 @@
+﻿@model Comment
+
+<form asp-controller="Comment" asp-action="New">
+    <input asp-for="ArticleId" type="hidden"/>
+    <label>Nom :</label>
+    <input asp-for="AuthorName" />
+
+    <label>Votre commentaire :</label>
+    <input asp-for="Content" />
+
+    <button type="submit" class="btn btn-dark">Poster le commentaire</button>
+</form>

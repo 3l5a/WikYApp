@@ -1,0 +1,39 @@
+﻿@model Article
+@{
+    ViewData["Title"] = "Article n°" + Model.Id;
+}
+<article class="border border-1 p-2 rounded mb-2">
+    <p>
+        <small class="text-uppercase">@Model.Theme</small> <br />
+        Article de @Model.AuthorName <br />
+        Créé le @Model.DateCreated.ToString("dd/MM/yy") à @Model.DateCreated.ToString("HH:mm")
+    </p>
+    @if (Model.DateUpdated.ToString() != Model.DateCreated.ToString())
+    {
+        <p>Mis à jour le : @Model.DateUpdated.ToString("dd/MM/yy") à @Model.DateUpdated.ToString("HH:mm")</p>
+    }
+    <p class="border border-1 p-2 rounded">@Model.Content</p>
+</article>
+<section class="comments border border-1 p-2 rounded mb-2">
+    <div class="border border-1 p-2 rounded mb-2">
+        <div>
+            <a asp-controller="Comment" asp-action="New" asp-route-articleId="@Model.Id">Ajouter un commentaire via formulaire séparé</a>
+        </div>
+        <div>
+            <partial name="_CommentForm" model="new Comment(){ ArticleId = Model.Id }" />
+        </div>
+    </div>
+    <div class="border border-1 p-2 rounded mb-2">
+        <h3>
+            @Model.Comments.Count commentaire(s)
+        </h3>
+        @foreach (Comment comment in Model.Comments)
+        {
+            <div>
+                <small>Le @comment.DateCreated.ToString("dd/MM/yy") @comment.AuthorName dit :</small>
+                <p>@comment.Content</p>
+                <small><a asp-controller="Comment" asp-action="Delete" asp-route-id="@comment.Id" asp-route-articleId="@Model.Id">Supprimer</a></small>
+            </div>
+        }
+    </div>
+</section>

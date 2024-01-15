@@ -1,0 +1,8 @@
+﻿@model Article
+@{
+    ViewData["Title"] = "Ajouter un article";
+}
+
+<form asp-action="New">
+    <partial name="_ArticleForm" model="Model" />
+</form>

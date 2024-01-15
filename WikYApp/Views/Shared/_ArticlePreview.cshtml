@@ -1,0 +1,21 @@
+﻿@model Article
+@if (Model is not null)
+{
+    <article class="border border-1 p-2 rounded mb-2">
+        <section class="article-info d-flex justify-content-between">
+            <p>
+                Publié par <span class="text-info">@Model.AuthorName</span> <br />
+                Le @Model.DateCreated
+            </p>
+            <p class="p-0">
+                <a asp-controller="Article" asp-action="Show" asp-route-id="@Model.Id" class="btn btn-info">Voir</a>
+                <a asp-controller="Article" asp-action="Edit" class="btn btn-info" asp-route-id="@Model.Id">Éditer</a>
+                <a asp-controller="Article" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Supprimer</a>
+            </p>
+        </section>
+        <hr />
+        <section class="article-content">
+            @Model.Content
+        </section>
+    </article>
+}
